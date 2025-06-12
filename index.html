@@ -16,7 +16,8 @@
       background-color: #000;
       color: #fff;
       font-family: 'Poppins', sans-serif;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
 
     audio {
@@ -24,9 +25,9 @@
     }
 
     .top-info {
-      font-size: 1rem;
+      font-size: 0.85rem;
       text-align: center;
-      padding: 1rem;
+      padding: 0.5rem;
       z-index: 2;
       position: relative;
       font-weight: bold;
@@ -113,11 +114,11 @@
   </script>
 
   <div class="top-info">
-    ⏱ Você tem melhorado a minha vida há: <span id="contador"></span>
+    🕒 Você tem me feito feliz há: <span id="contador"></span>
   </div>
 
   <audio id="musica" autoplay loop>
-    <source src="musica.mp3">
+    <source src="musica.mp3" type="audio/mpeg">
     Seu navegador não suporta áudio HTML5.
   </audio>
 
@@ -186,6 +187,7 @@
 
     window.addEventListener('load', () => {
       const audio = document.getElementById("musica");
+      audio.volume = 1;
       const playPromise = audio.play();
       if (playPromise !== undefined) {
         playPromise.catch(error => {
