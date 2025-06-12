@@ -23,7 +23,7 @@
 
     audio {
       display: block;
-      margin: 1rem auto 0;
+      margin: 1rem auto 2rem;
     }
 
     .top-info {
@@ -40,7 +40,7 @@
 
     .swiper-container {
       width: 100%;
-      height: calc(100vh - 160px);
+      height: auto;
       margin-top: 1rem;
     }
 
@@ -51,6 +51,7 @@
       justify-content: flex-start;
       padding: 1.5rem;
       text-align: center;
+      min-height: 80vh;
     }
 
     .swiper-slide img {
@@ -64,7 +65,7 @@
     }
 
     .swiper-slide:nth-child(4) img {
-      max-width: 500px;
+      max-width: 400px;
     }
 
     .swiper-slide:first-child::after {
@@ -82,20 +83,20 @@
     }
 
     .swiper-slide p {
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       line-height: 1.6;
       max-width: 700px;
     }
 
     .assinatura {
       font-weight: bold;
-      font-size: 0.85rem;
+      font-size: 0.675rem;
       color: #ff4f8b;
       margin-top: 2rem;
     }
 
     iframe.spotify {
-      margin: 1rem auto 0;
+      margin: 2rem auto;
       display: block;
       border-radius: 12px;
       width: 100%;
@@ -141,6 +142,8 @@
     🕒 Você tem me feito feliz há: <span id="contador"></span>
   </div>
 
+  <iframe class="spotify" id="spotifyPlayer" src="https://open.spotify.com/embed/track/23xwUnHLFrF4pan9eIrQj2?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
   <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
@@ -167,10 +170,8 @@
     </div>
   </div>
 
-  <iframe class="spotify" id="spotifyPlayer" src="https://open.spotify.com/embed/track/23xwUnHLFrF4pan9eIrQj2?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
   <audio id="musica" autoplay loop>
-    <source src="musica.mp3" type="audio/mp3">
+    <source src="musica.mp3" type="audio/mpeg">
     Seu navegador não suporta áudio HTML5.
   </audio>
 
