@@ -39,15 +39,16 @@
 
     .swiper-container {
       width: 100%;
-      height: 100vh;
+      height: calc(100vh - 160px);
+      margin-top: 1rem;
     }
 
     .swiper-slide {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 2rem;
+      justify-content: flex-start;
+      padding: 1.5rem;
       text-align: center;
     }
 
@@ -57,30 +58,33 @@
       border-radius: 12px;
       border: 4px solid #ff4f8b;
       box-shadow: 0 0 20px #ff4f8b;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
+      position: relative;
     }
 
     .swiper-slide p {
-      font-size: 1.05rem;
-      line-height: 1.7;
+      font-size: 0.95rem;
+      line-height: 1.6;
       max-width: 700px;
     }
 
     .assinatura {
       font-weight: bold;
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       color: #ff4f8b;
       margin-top: 2rem;
     }
 
     iframe.spotify {
-      margin: 1rem auto;
+      margin: 1rem auto 0;
       display: block;
       border-radius: 12px;
       width: 100%;
       max-width: 600px;
       height: 80px;
       border: none;
+      z-index: 10;
+      position: relative;
     }
 
     .emoji-heart {
@@ -100,7 +104,7 @@
 </head>
 <body>
 
-  <!-- Corações ❤️ -->
+  <!-- Corações -->
   <script>
     for (let i = 0; i < 30; i++) {
       const heart = document.createElement("div");
@@ -114,23 +118,17 @@
     }
   </script>
 
-  <!-- Topo com contador estilo placar -->
   <div class="top-info">
     🕒 Você tem me feito feliz há: <span id="contador"></span>
   </div>
 
-  <!-- Player oculto (música.mp3) -->
   <audio id="musica" autoplay loop>
     <source src="musica.mp3" type="audio/mpeg">
     Seu navegador não suporta áudio HTML5.
   </audio>
 
-  <!-- Spotify Embed -->
-  <iframe class="spotify" src="https://open.spotify.com/embed/track/23xwUnHLFrF4pan9eIrQj2?utm_source=generator&theme=0" 
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
-  </iframe>
+  <iframe class="spotify" id="spotifyPlayer" src="https://open.spotify.com/embed/track/23xwUnHLFrF4pan9eIrQj2?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
-  <!-- Swiper -->
   <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
@@ -157,7 +155,6 @@
     </div>
   </div>
 
-  <!-- Scripts -->
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script>
     const swiper = new Swiper('.swiper-container', {
