@@ -22,7 +22,8 @@
     }
 
     audio {
-      display: none;
+      display: block;
+      margin: 1rem auto 0;
     }
 
     .top-info {
@@ -62,15 +63,33 @@
       position: relative;
     }
 
+    .swiper-slide:nth-child(4) img {
+      max-width: 500px;
+    }
+
+    .swiper-slide:first-child::after {
+      content: "⬅️➡️";
+      position: absolute;
+      bottom: 10%;
+      font-size: 2rem;
+      animation: fadeOut 3s ease forwards;
+      opacity: 0.8;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 0.8; }
+      100% { opacity: 0; display: none; }
+    }
+
     .swiper-slide p {
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       line-height: 1.6;
       max-width: 700px;
     }
 
     .assinatura {
       font-weight: bold;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       color: #ff4f8b;
       margin-top: 2rem;
     }
@@ -83,7 +102,7 @@
       max-width: 600px;
       height: 80px;
       border: none;
-      z-index: 10;
+      z-index: 1;
       position: relative;
     }
 
@@ -122,13 +141,6 @@
     🕒 Você tem me feito feliz há: <span id="contador"></span>
   </div>
 
-  <audio id="musica" autoplay loop>
-    <source src="musica.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio HTML5.
-  </audio>
-
-  <iframe class="spotify" id="spotifyPlayer" src="https://open.spotify.com/embed/track/23xwUnHLFrF4pan9eIrQj2?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
   <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
@@ -154,6 +166,13 @@
       </div>
     </div>
   </div>
+
+  <iframe class="spotify" id="spotifyPlayer" src="https://open.spotify.com/embed/track/23xwUnHLFrF4pan9eIrQj2?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+  <audio id="musica" autoplay loop>
+    <source src="musica.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio HTML5.
+  </audio>
 
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script>
