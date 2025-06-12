@@ -18,7 +18,7 @@
       color: #fff;
       font-family: 'Poppins', sans-serif;
       overflow-x: hidden;
-      overflow-y: scroll;
+      overflow-y: auto;
     }
 
     audio {
@@ -61,14 +61,14 @@
     }
 
     .swiper-slide p {
-      font-size: 1.22rem;
-      line-height: 1.8;
+      font-size: 1.05rem;
+      line-height: 1.7;
       max-width: 700px;
     }
 
     .assinatura {
       font-weight: bold;
-      font-size: 1.215rem; /* Redução de 10% */
+      font-size: 1.05rem;
       color: #ff4f8b;
       margin-top: 2rem;
     }
@@ -114,33 +114,23 @@
     }
   </script>
 
-  <!-- Contador -->
+  <!-- Topo com contador estilo placar -->
   <div class="top-info">
     🕒 Você tem me feito feliz há: <span id="contador"></span>
   </div>
 
-  <!-- Música automática -->
-  <audio id="musica" autoplay loop></audio>
-  <script>
-    window.addEventListener('load', () => {
-      const audio = document.getElementById("musica");
-      audio.src = "musica.mp3";
-      audio.loop = true;
-      audio.muted = false;
+  <!-- Player oculto (música.mp3) -->
+  <audio id="musica" autoplay loop>
+    <source src="musica.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio HTML5.
+  </audio>
 
-      const playPromise = audio.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.log("Autoplay pode ter sido bloqueado:", error);
-        });
-      }
-    });
-  </script>
+  <!-- Spotify Embed -->
+  <iframe class="spotify" src="https://open.spotify.com/embed/track/23xwUnHLFrF4pan9eIrQj2?utm_source=generator&theme=0" 
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+  </iframe>
 
-  <!-- Spotify -->
-  <iframe class="spotify" src="https://open.spotify.com/embed/track/23xwUnHLFrF4pan9eIrQj2?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
-  <!-- Slides -->
+  <!-- Swiper -->
   <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
@@ -167,20 +157,21 @@
     </div>
   </div>
 
-  <!-- Swiper JS -->
+  <!-- Scripts -->
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script>
     const swiper = new Swiper('.swiper-container', {
       direction: 'horizontal',
       loop: false,
-      pagination: { el: '.swiper-pagination' },
+      pagination: {
+        el: '.swiper-pagination',
+      },
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       },
     });
 
-    // Contador de tempo
     const inicio = new Date("2024-11-24T00:00:00");
     function atualizarContador() {
       const agora = new Date();
@@ -194,8 +185,10 @@
       const restanteHoras = horas % 24;
       const restanteMinutos = minutos % 60;
       const restanteSegundos = segundos % 60;
+
       document.getElementById("contador").innerText =
-        `${meses}m ${Math.floor(restanteDias)}d ${restanteHoras}h ${restanteMinutos}m ${restanteSegundos}s`;
+        `${meses}m ${Math.floor(restanteDias)}d ` +
+        `${restanteHoras}h ${restanteMinutos}m ${restanteSegundos}s`;
     }
     setInterval(atualizarContador, 1000);
     atualizarContador();
