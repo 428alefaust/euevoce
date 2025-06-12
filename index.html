@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Você e Eu 💖</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <style>
     * {
       margin: 0;
@@ -18,7 +17,7 @@
       color: #fff;
       font-family: 'Poppins', sans-serif;
       overflow-x: hidden;
-      overflow-y: scroll;
+      overflow-y: auto;
     }
 
     audio {
@@ -26,7 +25,7 @@
     }
 
     .top-info {
-      font-size: 0.75rem;
+      font-size: 0.85rem;
       text-align: center;
       padding: 0.5rem;
       z-index: 2;
@@ -61,14 +60,14 @@
     }
 
     .swiper-slide p {
-      font-size: 1.247rem;
+      font-size: 1.3rem;
       line-height: 1.8;
       max-width: 700px;
     }
 
     .assinatura {
       font-weight: bold;
-      font-size: 1.215rem;
+      font-size: 1.5rem;
       color: #ff4f8b;
       margin-top: 2rem;
     }
@@ -97,9 +96,9 @@
       100% { transform: translateY(-10vh); opacity: 0; }
     }
   </style>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 <body>
-
   <!-- Corações ❤️ -->
   <script>
     for (let i = 0; i < 30; i++) {
@@ -114,9 +113,88 @@
     }
   </script>
 
-  <!-- Contador de tempo -->
   <div class="top-info">
     🕒 Você tem me feito feliz há: <span id="contador"></span>
   </div>
 
-  <!-- Mús
+  <audio id="musica" autoplay loop>
+    <source src="musica.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio HTML5.
+  </audio>
+
+  <iframe class="spotify" src="https://open.spotify.com/embed/track/23xwUnHLFrF4pan9eIrQj2?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+  <!-- SLIDES COM TEXTO -->
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="1.jpeg" alt="Foto 1">
+        <p>Quem diria que depois de um simples match no Tinder estaríamos comemorando um Dia dos (quase) Namorados? Acho que a questão é que não foi um simples match!</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="2.jpeg" alt="Foto 2">
+        <p>Tem sido uma delícia descobrir um amor leve e diferente com você. Você de fato tem melhorado a minha vida, os meus dias, e tem me ajudado a criar memórias inesquecíveis.</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="3.jpeg" alt="Foto 3">
+        <p>Espero de todo meu coração que tudo que temos vivido continue com a mesma vontade, o mesmo carinho, a mesma intensidade e amor. Farei de tudo para que todos os nossos sonhos e planos se realizem da melhor forma possível.</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="4.jpeg" alt="Foto 4">
+        <p>Obrigado por me amar de uma forma tão linda, e me fazer descobrir que essa forma de amar era algo que eu sempre quis e precisava. Como já te falei uma vez, você tem me ensinado uma nova forma de amar e me ajudado a novamente acreditar no amor.</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="5.jpeg" alt="Foto Final">
+        <p>Te amo demais, minha petinha, meu bebê peto, minha gata peta, minha vida, MEU AMOR!</p>
+        <div class="assinatura">Assinado: Seu Gato Peto, Seu Petinho, Seu AMOR. Seu, seu e SEU!</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.swiper-container', {
+      direction: 'horizontal',
+      loop: false,
+      pagination: {
+        el: '.swiper-pagination',
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+
+    const inicio = new Date("2024-11-24T00:00:00");
+    function atualizarContador() {
+      const agora = new Date();
+      const diff = agora - inicio;
+      const segundos = Math.floor(diff / 1000);
+      const minutos = Math.floor(segundos / 60);
+      const horas = Math.floor(minutos / 60);
+      const dias = Math.floor(horas / 24);
+      const meses = Math.floor(dias / 30.44);
+      const restanteDias = dias % 30.44;
+      const restanteHoras = horas % 24;
+      const restanteMinutos = minutos % 60;
+      const restanteSegundos = segundos % 60;
+      document.getElementById("contador").innerText =
+        `${meses}m ${Math.floor(restanteDias)}d ` +
+        `${restanteHoras}h ${restanteMinutos}m ${restanteSegundos}s`;
+    }
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
+
+    window.addEventListener('load', () => {
+      const audio = document.getElementById("musica");
+      audio.volume = 1;
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log("Autoplay bloqueado:", error);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
